@@ -1,5 +1,5 @@
 # Docker-y-Kubernetes
-                                                           CURSO DE KUBERNETES
+                                                           CARERA DE KUBERNETES
 1.1 KUBERNETES PARA PRINCIPIANTES
 
 Kubernetes es una herramienta que nos ayuda a realizar microservicios que nos permite realizar nuestra aplicación en varios entregables(o servicios) interconectados
