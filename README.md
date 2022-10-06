@@ -27,7 +27,7 @@ También aprendí lo que es la Orquestación que es lo que nos permite realizar 
 
 A su vez que los distintos tipos de orquestación que hay que cada uno usa un método de comunicación que son tales como:
 
-* **Orquestación de tareas programadas:** que sus principales disparadores suele ser eventos, normalmente su principal funcionamiento es la ejecución de un proceso o una app, ** Su método de comunicación es a través de comunicación local**
+* **Orquestación de tareas programadas:** que sus principales disparadores suele ser eventos, normalmente su principal funcionamiento es la ejecución de un proceso o una app, **Su método de comunicación es a través de comunicación local**
 
 * **Orquestación de Cloud** como su nombre bien indica su tipo de comunicación es através de **Servicios Cloud**, se usa principalmente para APIS o webs y permite un mayor control de los recurso del Cloud que se emplean y Automatizadores de bajo nivel
 
