@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mygo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mygo
+  template:
+    metadata:
+      labels:
+        app: mygo
+    spec:
+      containers:
+      - name: mygo
+        image: quay.io/rhdevelopers/mygo:v1
+        ports:
+        - containerPort: 8000

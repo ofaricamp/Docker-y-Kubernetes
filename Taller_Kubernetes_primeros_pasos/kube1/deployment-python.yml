@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypython-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mypython
+  template:
+    metadata:
+      labels:
+        app: mypython
+    spec:
+      containers:
+      - name: mypython
+        image: quay.io/rhdevelopers/mypython:v1
+        ports:
+        - containerPort: 8000
