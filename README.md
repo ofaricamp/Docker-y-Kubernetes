@@ -134,5 +134,34 @@ Gracias a herramientas como **Docker build** podremos crear la imagen de nuestro
 
 ![Ejecutando Contenedor](/capturas/curso2/dockerRun.PNG)
 
+Si queremos limitar los recursos que consume nuestro contenedor tenemos 2 maneras de hacer:
+* La primera es escribiendo en la consola el comando **docker run -ti --rm -p + puerto + nombre + puerto que se empleará + -m + los megabytes de ram que le otorgaremos + --cpus="cantidad de cpus" + nombre servicio**.
+Ejemplo de comando con 1 de cpu y 400 megas de ram.
+
+![Ejemplo](/capturas/curso2/ComandoLimitador.PNG)
+
+* La segunda manera seria escribiendo en el fichero .yml que se escribiria de la siguiente manera:
+
+![ejemplo](/capturas/curso2/YmlConLimitación.PNG)
+
+Si realizamos un curl my resources en Java 8 veremos que no nos pone 1 cuarto de lo que nosotros limitamos si no el de la máquina en si.
+
+![ejemplo](/capturas/curso2/ResultadoMentiroso.PNG)
+
+En cambio si estamos en Java 11 veremos que el resultado es correcto y usa de lo limitado anteriormente.
+
+![ejemplo](/capturas/curso2/ResultadoEnJava11.PNG)
+
 De manera normal cada servicio consume hasta 1 cuarto del recurso que dispone lo malo es que en **caso de que realicemos un servicio en java, este tendrá que ser en java 11 porque si lo ponemos en java 8 este elegirá consumir 1 cuarto de los recursos que dispone la máquina NO de los recursos que tiene definidos para consumir el contenedor**.
 
+Un comando muy útil es el "kuberctl describe + nombre del pod,deployment,contenedor" que nos da la información que esta definida en el mismo como se ve en la imagen el deployment de ejemplo dispone de los limitadores definidos anteriormente.
+
+![ejemplo](/capturas/curso2/ComandoDescribeServices.PNG)
+
+**Si realizasemos la request en Java 8 con los limitadores no saltaria una excepción dado que consume más recursos de lo que dispone y eso no es lo que se busca**.
+
+![ejemplo](/capturas/curso2/ExecuteJava8.PNG)
+
+**Sin enbargo si lo realizamos en Java 11 (o superior) no sucedera ningún problema dado que hace caso de los limitadores puestos**
+
+![ejemplo](/capturas/curso2/request.PNG)
