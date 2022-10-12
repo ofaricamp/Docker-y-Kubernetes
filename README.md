@@ -74,7 +74,7 @@ En Kubernetes podemos dividirlo en dos partes principales con las que se control
 Por ultimo en kubernetes en caso de que uno de los nodos falle, la información que el nodo dispusiera se reparte entre el resto de nodos que está estea en el pod y tambien si solicitamos que se envia X informacion a Y nodos en caso de que en uno no llegue o falle esta sera enviada a otros de los nodos puesto que la información debe ser almacenada en el pod.
 
 ## 12/10/2022
-### Finalización y ejemplos prácticos de algunos comandos básicos de kubernetes en consola
+### Finalización del taller y ejemplos prácticos de algunos comandos básicos de kubernetes en consola
 **Nota: Las siguientes imágenes no son de mi propia consola por problemas que me esta ocasionando la máquina virtual, esperando poder arreglarlos pronto y cambiar las imágenes.**
 
 #### Comandos básicos de creación y visualización de pods y deployments
@@ -116,3 +116,5 @@ Por ultimo en kubernetes en caso de que uno de los nodos falle, la información 
 * Como ultimo comando básico seria el comando **kubectl log + el nombre de mi aplicacción o servico** que gracias a este podremos ser capaces de detectar algunos errores que pudiera llegar a tener
 
 ![Así es como se miraría el comando log en consola con la información del servicio](/capturas/log.PNG)
+
+## Inicio del taller de Creación de contenedores y despliegue de aplicaciones
