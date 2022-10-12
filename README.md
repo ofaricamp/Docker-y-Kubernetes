@@ -121,6 +121,7 @@ Por ultimo en kubernetes en caso de que uno de los nodos falle, la información 
 Aprendí como lanzar un DOCKERFILE y la importancia que tiene el limitar los recursos que emplee nuestro contendor, puesto que esto nos puede generar problemas dado que cada contener consume recursos físicos de una maquina o host y si tenemos por ejemplo 5 contenedores de kubernetes y uno de ellos esta empleando una gran cantidad de CPU o de memoria hará que no quede sufience para los otros 4 restantes siendo perjudicial para nuestros servicios.
 
 **Lanzamiento de un DOCKERFILE desde consola**.
+
 ![Imagen de DOCKERFILE EN CONSOLA](/capturas/curso2/Captura.PNG)
 
 Gracias a herramientas como **Docker build** podremos crear la imagen de nuestro contenedor poniendo el comando **docker build -t + nombre de ka imagen**.
