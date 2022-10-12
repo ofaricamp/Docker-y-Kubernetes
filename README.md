@@ -80,4 +80,5 @@ Por ultimo en kubernetes en caso de que uno de los nodos falle, la información 
 #### Comandos básicos de creación y visualización de pods y deployments
 
 * Para poder crear un servicio necesitaremos insertar en consola el comando **kubectl apply -f + (nombre del fichero .yml o el contenido escrito todo en consola)**
+
 ![Contenido que debe tener el fichero .yml o lo que se debe redactar junto el comando](/capturas/ContenidoYML.PNG)
