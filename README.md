@@ -37,7 +37,7 @@ A su vez que los distintos tipos de orquestación que hay que cada uno usa un m�
 
 
 ## 07/10/2022
-### Inicio del curso de Kubernetes para principiantes
+### Inicio del taller de Kubernetes para principiantes
 Aprendí que Kubernetes es una herramienta que nos ayuda a realizar microservicios que nos permite realizar nuestra aplicación en varios entregables(o servicios) interconectados por red que gracias a esto podemos entregar el proyecto, realizar actualizaciones de una manera más frecuente y cómoda que antes cuando se entregaba un único archivo, esto resulta muy útil a la hora de sacar nuestras aplicaciones o proyectos a producción.
 
 Pero estos microproyectos dispones de su base de datos propia e independiente de las bases de datos del resto de servicios (aunque podrían llegar a tener una en común), esto también resulta muy cómodo y útil puesto que el proyecto al estar dividido de esta manera un microservicio creado anteriormente puede ser empleado para el desarrollo de un proyecto diferente, pudiendo trazar así diferentes rutas del proyecto.
@@ -63,7 +63,7 @@ Conceptos básicos o imprescindibles que se deben saber o conocer de Kubernetes:
 **Label**: Es como se le llama el valor al que asociamos los objetos en Kubernetes (aunque tambien se le puede conocer como tupla).
 
 ## 10/10/2022
-### Continuación del curso de Kubernetes para principiantes(remate de la parte teórica y retoques en lo realizado el día 07/10)
+### Continuación del taller de Kubernetes para principiantes(remate de la parte teórica y retoques en lo realizado el día 07/10)
 En Kubernetes podemos dividirlo en dos partes principales con las que se controla y organizan las cosas:
 * **El Master:** Denominamos master o master node a lo que seria llamado el controlador de los nodos, puesto que en el encontramos:
 1. **La Api** a la que está asociada nuestro contenedor o nuestros nodos
@@ -72,3 +72,12 @@ En Kubernetes podemos dividirlo en dos partes principales con las que se control
 * **Los Nodos:** Son nuestros pods en donde cada uno dispondra de unos datos o información en concreta almacenada en ellos y donde los scheduler y controlers sueltan sus intrucciones con referencia a ellos.
 
 Por ultimo en kubernetes en caso de que uno de los nodos falle, la información que el nodo dispusiera se reparte entre el resto de nodos que está estea en el pod y tambien si solicitamos que se envia X informacion a Y nodos en caso de que en uno no llegue o falle esta sera enviada a otros de los nodos puesto que la información debe ser almacenada en el pod.
+
+##12/10/2022
+### Finalización y ejemplos prácticos de algunos comandos básicos de kubernetes en consola
+**Nota: Las siguientes imágenes no son de mi propia consola por problemas que me esta ocasionando la máquina virtual, esperando poder arreglarlos pronto y cambiar las imágenes.**
+
+#### Comandos básicos de creación y visualización de pods y deployments
+
+* Para poder crear un servicio necesitaremos insertar en consola el comando **kubectl apply -f + (nombre del fichero .yml o el contenido escrito todo en consola)**
+![Contenido que debe tener el fichero .yml o lo que se debe redactar junto el comando]
