@@ -73,7 +73,7 @@ En Kubernetes podemos dividirlo en dos partes principales con las que se control
 
 Por ultimo en kubernetes en caso de que uno de los nodos falle, la información que el nodo dispusiera se reparte entre el resto de nodos que está estea en el pod y tambien si solicitamos que se envia X informacion a Y nodos en caso de que en uno no llegue o falle esta sera enviada a otros de los nodos puesto que la información debe ser almacenada en el pod.
 
-##12/10/2022
+## 12/10/2022
 ### Finalización y ejemplos prácticos de algunos comandos básicos de kubernetes en consola
 **Nota: Las siguientes imágenes no son de mi propia consola por problemas que me esta ocasionando la máquina virtual, esperando poder arreglarlos pronto y cambiar las imágenes.**
 
@@ -82,3 +82,33 @@ Por ultimo en kubernetes en caso de que uno de los nodos falle, la información 
 * Para poder crear un servicio necesitaremos insertar en consola el comando **kubectl apply -f + (nombre del fichero .yml o el contenido escrito todo en consola)**
 
 ![Contenido que debe tener el fichero .yml o lo que se debe redactar junto el comando](/capturas/ContenidoYML.PNG)
+
+* Una vez creado podemos usar el comando **kubectl get services/deployment/..** 
+
+![En caso de obtener un servicio utilizando el comando watch en una consola a parte mirariamos algo tal que así](/capturas/resultado.PNG)
+
+![Esto resultaria la visualización normal en consola sin un watch](/capturas/get.PNG)
+
+* Con el comando **kubectl create + (fichero .yml o contenido escrito en consola)** podemos crear nuestros servicios,pods,deployments...
+
+![Cuando creamos un algo nuevo el watch nos pondrá en el status que se está creando](/capturas/Captura.PNG)
+
+* Con el comando **kubectl delete + (el nombre, o la ip de lo que deseamos borrar)** eleminará el servicio pero esto es difente si lo hacemos con un deployment o no (tambien se puede aplicar un **kubectl delete all** para eleminar todos el contenido incluido los deployments)
+
+![Cuando eleminamos un servicio que no está en un deployment el status nos pondra que se esta terminando](/capturas/TerminatingServiceNoDeploy.PNG)
+
+![Nos quedará algo tal que así](/capturas/resultado.PNG)
+
+![Sin embargo si es en un deployment podremos ver como esta terminando el servicio y a su vez esta creando uno nuevo con los datos e información que disponia el que está terminando](/capturas/deploy.PNG)
+
+* Aunque nosotros en el fichero .yml o en el contenido podremos definir una label añadiendo la propiedad **label: MiLabel** en el fichero y entonces el servicio dispondra de una label
+
+![Ahora disponemos de un servicio que dispone de una label identificadora propia](/capturas/label.PNG)
+
+* Si queremos entrar en nuestro servicio o pod simplemente tendremos que poner el comando **kubectl exec -ti +nombre del servicio o pod** aunque tambien se puede acceder con el comando **curl +ip y puerto del servicio**
+
+![El resultado al entrar seria algo tal que así con ejemplo de alguna ejecución con el curl del servicio](/capturas/entrarEnKubernetes.PNG)
+
+* Como ultimo comando básico seria el comando **kubectl log + el nombre de mi aplicacción o servico** que gracias a este podremos ser capaces de detectar algunos errores que pudiera llegar a tener
+
+![Así es como se miraría el comando log en consola con la información del servicio](/capturas/log.PNG)
