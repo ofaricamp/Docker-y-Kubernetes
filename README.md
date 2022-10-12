@@ -95,9 +95,13 @@ Por ultimo en kubernetes en caso de que uno de los nodos falle, la información 
 
 * Con el comando **kubectl delete + (el nombre, o la ip de lo que deseamos borrar)** eleminará el servicio pero esto es difente si lo hacemos con un deployment o no (tambien se puede aplicar un **kubectl delete all** para eleminar todos el contenido incluido los deployments)
 
+**Cuando eleminamos un servicio que no está en un deployment el status nos pondra que se esta terminando**
+
 ![Cuando eleminamos un servicio que no está en un deployment el status nos pondra que se esta terminando](/capturas/TerminatingServiceNoDeploy.PNG)
 
 ![Nos quedará algo tal que así](/capturas/resultado.PNG)
+
+**Sin embargo si es en un deployment podremos ver como esta terminando el servicio y a su vez esta creando uno nuevo con los datos e información que disponia el que está terminando**
 
 ![Sin embargo si es en un deployment podremos ver como esta terminando el servicio y a su vez esta creando uno nuevo con los datos e información que disponia el que está terminando](/capturas/deploy.PNG)
 
