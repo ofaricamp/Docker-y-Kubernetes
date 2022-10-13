@@ -182,6 +182,8 @@ En kubernetes hay 2 conceptos super importantes a la hora de actualizar nuestro 
 
 * **ReadynessProbe:** Esto se dedica a estar comprobando todo el rato que nuestra aplicación estea Ready, en caso de que se actualice o algo suceda en la aplicacción esta no la resetea si no que lanza otra como si fuera una copia y mientras no esta ready esta copia la version anterior sigue funcionando y es cuando la copia esta lista que se hace las llamadas sobre la copia, porque originalmente la aplicacción sigue corriendo.
 
+**Imagen de un fallo con SOLO ReadynessProbe**
+
 ![ejemplo](/capturas/curso2/READ.PNG)
 
 **Por tanto si definimos un LivessProbe y un ReadynessProbe en nuestro fichero yml de nuestro contenedor de esta manera.(los initalSeconds y periods son para que se tenga un breve tiempo de espera como si fuera una pantalla de carga)**
