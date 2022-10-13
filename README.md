@@ -169,3 +169,49 @@ Un comando muy útil es el "kuberctl describe + nombre del pod,deployment,conten
 ## 13/10/2022
 ### Finalización del taller de Creación de contenedores y despliegue de aplicaciones
 **Nota en lo explicado anteriormente aunque se empleen comando estilo docker en algunos casos en kubernetes se realiza exactamente igual, lo que pasa es que kubernetes y docker suelen ir muy de la mano.**
+
+En kubernetes hay 2 conceptos super importantes a la hora de actualizar nuestro servicio que son el **LivessProbe** y el **ReadynessProbe** porque sin ellos nuestro servicio sufriria algun que otro timeDown como la imagen de ejemplo:
+
+![ejemplo](/capturas/curso2/DownTimes.PNG)
+
+* **LivessProbe:** Es lo que se denomina cuando nuestra aplicación esta corriendo o está "viva", pero si se le hace una llamada y esta no está respondiendo la aplicación pasa a estar en lo que se llama **"estado zombie"** que significa que nuestra aplicación existe esta gastando recuerso esta lanzada, pero no hace nada entonces lo que sucede es que nuestra aplicación sufre un RESTART provocando asi un pequeño "cierre" de la misma.
+
+**Imagen de un fallo con SOLO LivesProbe**
+
+![ejemplo](/capturas/curso2/Line.PNG)
+
+* **ReadynessProbe:** Esto se dedica a estar comprobando todo el rato que nuestra aplicación estea Ready, en caso de que se actualice o algo suceda en la aplicacción esta no la resetea si no que lanza otra como si fuera una copia y mientras no esta ready esta copia la version anterior sigue funcionando y es cuando la copia esta lista que se hace las llamadas sobre la copia, porque originalmente la aplicacción sigue corriendo.
+
+![ejemplo](/capturas/curso2/READ.PNG)
+
+**Por tanto si definimos un LivessProbe y un ReadynessProbe en nuestro fichero yml de nuestro contenedor de esta manera.(los initalSeconds y periods son para que se tenga un breve tiempo de espera como si fuera una pantalla de carga)**
+
+![ejemplo](/capturas/curso2/Vida.PNG)
+
+**Y gracias a esto nuestra aplicación no presentara ningún timeDown.**
+
+![ejemplo](/capturas/curso2/CeroTimeDown.PNG)
+
+Por ultimo, cada contenedor dispone de una configuración propias con sus variables de entorno y existen dos maneras de cambiar:
+
+1. Poniendo en la consola el comando **kubectl set env + el nombre del pod o deployment+ claveVariable=valor**
+
+![ejemplo](/capturas/curso2/PrimerCambio.PNG)
+
+**Resultado**
+
+![ejemplo](/capturas/curso2/CambioDeVariableDeEntorno.PNG)
+
+2. Con un **Mapa De Configuración** que se trata de un objeto de kubernetes en el que se puede definir unas claves y unos valores que se usaran en la aplicacción y para ello necesitaremos dos cosas imprescindibles:
+
+* Un fichero .properties donde estaran definidas nuestras duplas clave valor
+
+![ejemplo](/capturas/curso2/Properties.PNG)
+
+* Y definir en nuestro .yml que utilizaremos ese fichero de configuración
+
+![ejemplo](/capturas/curso2/Config.PNG)
+
+**El resultado es el mismo, solo que dependiendo de la aplicacción es mejor hacer el cambio de una manera u otra**
+
+![ejemplo](/capturas/curso2/CambioDeVariableDeEntorno.PNG)
