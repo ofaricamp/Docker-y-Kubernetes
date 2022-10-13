@@ -165,3 +165,7 @@ Un comando muy útil es el "kuberctl describe + nombre del pod,deployment,conten
 **Sin enbargo si lo realizamos en Java 11 (o superior) no sucedera ningún problema dado que hace caso de los limitadores puestos**
 
 ![ejemplo](/capturas/curso2/request.PNG)
+
+## 13/10/2022
+### Finalización del taller de Creación de contenedores y despliegue de aplicaciones
+**Nota en lo explicado anteriormente aunque se empleen comando estilo docker en algunos casos en kubernetes se realiza exactamente igual, lo que pasa es que kubernetes y docker suelen ir muy de la mano.**
