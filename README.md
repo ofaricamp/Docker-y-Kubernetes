@@ -217,3 +217,6 @@ Por ultimo, cada contenedor dispone de una configuración propias con sus variab
 **El resultado es el mismo, solo que dependiendo de la aplicacción es mejor hacer el cambio de una manera u otra**
 
 ![ejemplo](/capturas/curso2/CambioDeVariableDeEntorno.PNG)
+
+## 14/10/2022
+### Inicialización y finalización del taller de modelo de persistencia y pods
