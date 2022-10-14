@@ -223,7 +223,7 @@ El taller trataba acerca de los **Volumenes** los principales ayudantes a la hor
 
 En primer lugar para poder disponer de un volumen tendremos que definir un PersistenVolumen en un fichero .yml y su contenido sería algo similar a esto:
 
-![ejemplo](/capturas/curso3/PersistentVolumen.PNG)
+![ejemplo](/capturas/Curso3/PersistentVolumen.PNG)
 
 Sin embargo existen dos maneras de gestionar el espacio de nuestros volumenes:
 
@@ -232,11 +232,11 @@ Sin embargo existen dos maneras de gestionar el espacio de nuestros volumenes:
 * Luego disponemos de los denominado **Storage Class** que es a lo que se correspondería la imagen anterior, este resulta el método más empleado porque su almacenamiento es DINAMICO es decir no debemos definirle un máximo simplemente seguirá guardando información siempre que la máquina tenga espacio.
 **En consola podemos ver si disponemos de un storage class si escribimos en la consola **kubectl get storageclass** **
 
-![ejemplo](/capturas/curso3/storageclass.PNG)
+![ejemplo](/capturas/Curso3/storageclass.PNG)
 
 ** Con el comando kubectl get pvc podremos obtener la información sobre los volumenes, capacidades, nodos de accesos y que tipo de Storageclass tiene nuestro servicio**
 
-![ejemplo](/capturas/curso3/getPvc.PNG)
+![ejemplo](/capturas/Curso3/getPvc.PNG)
 
 Tambien es importante conocer los siguientes terminos sobre el volumen:
 
@@ -244,32 +244,31 @@ Tambien es importante conocer los siguientes terminos sobre el volumen:
   
  **En un fichero .yml de un POD podemos definir un VolumeMount y se haría de esta manera**
  
- ![ejemplo](/capturas/curso3/VolumenMount.PNG)
+ ![ejemplo](/capturas/Curso3/VolumenMount.PNG)
  
 2. **PersistentVolumeClaim:** O tambien conocido como PVC es el llamado al reclamo de espacio que se le hace a un PersistentVolumen o un StorageClass.
 
 **Esquema simple sobre como funciona la persistencia de volumen**
 
-![ejemplo](/capturas/curso3/Esquema.PNG)
+![ejemplo](/capturas/Curso3/Esquema.PNG)
 
 Kubernetes tambien dispone de los llamados **Kubernetes secrets** que se emplean para insertar o guardar cierta información que no queremos que se vea de cara al publico como por ejemplo la contraseña y usuario en una base de datos.
-
 
 Sin embargo debemos andarnos con mucho ojo cuando guardamos nuestros secretos, porque Kubernetes normalmente guarda todo en en base de 64 y eso no es un método de incriptación, y esto resulta peligroso por lo siguiente:
 
 1. Si ejecutamos en nuestra consola el comando **kubectl get secrets + nombre del secreto (refieriendose a password, user) -o yaml** (ojo con get secrets se obtiene SOLO el nombre de los secretos), podremos obtener la siguiente información.
 
-![ejemplo](/capturas/curso3/SecretOfuscado.PNG)
+![ejemplo](/capturas/Curso3/SecretOfuscado.PNG)
 
 2. Con lo obtenido del comando anterior podremos realizar un comando echo del valor que nos devolvió anterior mente y podremos obtener el valor del secreto.
 
-![ejemplo](/capturas/curso3/EchoDeSecreto.PNG)
+![ejemplo](/capturas/Curso3/EchoDeSecreto.PNG)
 
 Pero esto se podría intentar solucionar o bien buscando una manera de cambiar que no estea en base de 64(existen programas que ya te cambian esto) o un "apaño" es definirlo en un fichero .yml y al estar definido todos los secretos seran puestos **cada uno de ellos en un fichero aparte** y obviamente el contenido de ese fichero es el valor del secreto.
 
 **Definición de un secreto en un fichero .yml**
 
-![ejemplo](/capturas/curso3/InsertarVolumenYSecretos.PNG)
+![ejemplo](/capturas/Curso3/InsertarVolumenYSecretos.PNG)
 
 Finalmente en el talle hablo de los siguientes conceptos de kubernetes que son importantes (cada uno de los siguientes conceptos deben ser definidos en nuestro fichero .yml como viene a ser costumbre y despues de la definición de cada uno le acompañará su respectiva imagen de definición en el fichero):
 
@@ -277,25 +276,25 @@ Finalmente en el talle hablo de los siguientes conceptos de kubernetes que son i
 
 **En este ejemplo estamos definiendo una afinidad sobre las labels "color" cuyo valor sea "blue"**
 
-![ejemplo](/capturas/curso3/AfinidadPNG.PNG)
+![ejemplo](/capturas/Curso3/AfinidadPNG.PNG)
 
 * **Antiafinity:** Es la afinidad inversa, es decir la empleamos cuando queremos que dos PODS no corran simultaneamente nunca, bien porque el POD consume muchos recursos físicos o bien porque se pisan el uno con el otro.
 
 **En este ejemplo estamos definiendo una antiafinidad sobre las labels "app" cuyo valor sea "myboot"**
 
-![ejemplo](/capturas/curso3/AntiAfinidad.PNG)
+![ejemplo](/capturas/Curso3/AntiAfinidad.PNG)
 
 * **JOB:** Es el nombre con el que se le denomina aquellos PODS que simplemente ejecutan una acción y despues de eso el POD se muere, un ejemplo de esto seria como insertar un nuevo usuario en nuestra base de datos de usuarios.
 
 **En este ejemplo simplemente estamos definiendo un JOB que es el "Hello DevNation" y solo se ejecutará una vez.**
 
-![ejemplo](/capturas/curso3/ELJOB.PNG)
+![ejemplo](/capturas/Curso3/ELJOB.PNG)
 
 * **CronJOB:** Podríamos decir que el CronJOB es la contraparte de un JOB porque mientras el JOB solo lanza la acción una vez en CronJOB ejecuta periodicamente un JOB.
  
  **El JOB es el mismo que el del ejemplo anterior solo que aquí al estar en en ConJOB se ejecutará periodicamente, en schedule definimos cada cuanto tiempo se debe de estar lanzando el JOB en este caso se lanzaría cada 1 minuto.**
  
- ![ejemplo](/capturas/curso3/ConJob.PNG)
+ ![ejemplo](/capturas/Curso3/ConJob.PNG)
  
  **NOTA: NOSOTROS SI HACEMOS EN CONSOLA UN kubectl get job ESTE NOS DEVOLVERÁ CON JOBS COMO LOS CRONJOBS, por tanto es importante definirlos con un nombre apropiado.**
  
@@ -305,10 +304,10 @@ Finalmente en el talle hablo de los siguientes conceptos de kubernetes que son i
 
 **El name definido en este fichero .yml es el nombre que dispondrá es el definido en el campo name.**
 
-![ejemplo](/capturas/curso3/satatefulset.PNG)
+![ejemplo](/capturas/Curso3/satatefulset.PNG)
 
 **Si nos fijamos en esta imagen los servicios disponen ya de un nombre identificador y un indice, pero tenemos que tener en cuenta a la hora de borrar el indice que estos tiene, por ejemplo si quisieramos borrar el que esta en segundo lugar su indice es 1,**
 
-![ejemplo](/capturas/curso3/Ejemplo.PNG)
+![ejemplo](/capturas/Curso3/Ejemplo.PNG)
 
 
