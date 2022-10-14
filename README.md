@@ -282,7 +282,7 @@ Finalmente en el talle hablo de los siguientes conceptos de kubernetes que son i
 
 **En este ejemplo estamos definiendo una antiafinidad sobre las labels "app" cuyo valor sea "myboot"**
 
-![ejemplo](/capturas/Curso3/AntiAfinidad.PNG)
+![ejemplo](/capturas/Curso3/Antiafinidad.PNG)
 
 * **JOB:** Es el nombre con el que se le denomina aquellos PODS que simplemente ejecutan una acción y despues de eso el POD se muere, un ejemplo de esto seria como insertar un nuevo usuario en nuestra base de datos de usuarios.
 
