@@ -223,7 +223,7 @@ El taller trataba acerca de los **Volumenes** los principales ayudantes a la hor
 
 En primer lugar para poder disponer de un volumen tendremos que definir un PersistenVolumen en un fichero .yml y su contenido sería algo similar a esto:
 
-![ejemplo](/capturas/Curso3/PersistentVolumen.PNG)
+![ejemplo](/capturas/Curso3/PersistentVolumen.png)
 
 Sin embargo existen dos maneras de gestionar el espacio de nuestros volumenes:
 
@@ -308,6 +308,6 @@ Finalmente en el talle hablo de los siguientes conceptos de kubernetes que son i
 
 **Si nos fijamos en esta imagen los servicios disponen ya de un nombre identificador y un indice, pero tenemos que tener en cuenta a la hora de borrar el indice que estos tiene, por ejemplo si quisieramos borrar el que esta en segundo lugar su indice es 1,**
 
-![ejemplo](/capturas/Curso3/Ejemplo.PNG)
+![ejemplo](/capturas/Curso3/Ejemplo.png)
 
 
