@@ -223,7 +223,7 @@ El taller trataba acerca de los **Volumenes** los principales ayudantes a la hor
 
 En primer lugar para poder disponer de un volumen tendremos que definir un PersistenVolumen en un fichero .yml y su contenido sería algo similar a esto:
 
-![ejemplo](/capturas/Curso3/PersistentVolumen.png)
+![ejemplo](/capturas/Curso3/PersistentVolume.png)
 
 Sin embargo existen dos maneras de gestionar el espacio de nuestros volumenes:
 
@@ -250,7 +250,7 @@ Tambien es importante conocer los siguientes terminos sobre el volumen:
 
 **Esquema simple sobre como funciona la persistencia de volumen**
 
-![ejemplo](/capturas/Curso3/Esquema.PNG)
+![ejemplo](/capturas/Curso3/Esquema.png)
 
 Kubernetes tambien dispone de los llamados **Kubernetes secrets** que se emplean para insertar o guardar cierta información que no queremos que se vea de cara al publico como por ejemplo la contraseña y usuario en una base de datos.
 
