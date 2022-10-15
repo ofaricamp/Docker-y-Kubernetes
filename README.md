@@ -332,9 +332,9 @@ Una vez echo el "hello world" de GO, se empieza con la descarga de KIND y hay un
 
 * El método que se enseñaba en el taller que era con **KIND GO111MODULE="on" go get sigs.k8s.io/kind@v0.4.0** está **OBSOLETO** en su lugar debemos usar **go install sigs.k8s.io/kind@v0.4.0**
 * En caso de que no dispusieramos aun de GO instalado se puede descargar con la siguiente serie de comandos:
-          1. **curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.16.0/kind-linux-amd64**
-          2. **chmod +x ./kind**
-          3. **sudo mv ./kind /usr/local/bin/kind**
+  1. **curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.16.0/kind-linux-amd64**
+  2. **chmod +x ./kind**
+  3. **sudo mv ./kind /usr/local/bin/kind**
 
 Una vez que se tiene instalado KIND para practicar se realizaron ejercicio sencillos como la creación de un cluster, su borrado, ver sus logs y agregarle una imagen a nuestro cluster:
 
