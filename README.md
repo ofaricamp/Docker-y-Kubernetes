@@ -310,8 +310,8 @@ Finalmente en el talle hablo de los siguientes conceptos de kubernetes que son i
 
 ![ejemplo](/capturas/Curso3/Ejemplo.png)
 
-##15/10/2022
-###Inicio y finalización del taller Kind: Kubernetes en Docker
+## 15/10/2022
+### Inicio y finalización del taller Kind: Kubernetes en Docker
 En este taller aprendí que es kind, que es una herramienta horientada hacia el testing donde podemos en un contenedor de DOCKER correr los nodos y contenedores de Kubernetes. Tambien nos permite crear clusters y contruir imágenes, pero ojo está escrita en GO pero no es necesario disponer de un gran conocimiento como tal, pero lo más importante es que se trata de una herramienta multiplataforma.
 
 **Para poder hacernos una idea de super sencilla de GO simplemente vamos a crear un "hello world" en GO, la siguiente imagen es el código en GO**
@@ -342,9 +342,13 @@ Una vez que se tiene instalado KIND para practicar se realizaron ejercicio senci
 
 ![ejemplo](/capturas/curso4/CreacionDeUnNuevoCluster.PNG)
 
-**Si lanzamos un docker logs podremos ver los logs que se lanzan y en caso de que algún problema ocurriera es aquí donde nos informarian**
+**Si lanzamos un docker logs podremos ver los logs que se lanzan y en caso de que algún problema ocurriera es aquí donde nos informarian (ojo tambien podríamos redirigir el log a un fichero de texto con el comando less pero tenemos que poner el nombre de la aplicación)**
 
 ![ejemplo](/capturas/curso4/logs.PNG)
+
+**Ejemplo de LOG en un fichero de texto creado con el comando less**
+
+![ejemplo](/capturas/curso4/logEnLess.PNG)
 
 Como dije hay dos maneras de lanzar el comando y la diferencía es que en uno se nos creará un cluester con el nombre predeterminado que les asigna KIND mientras que en el otro dispondra de un nombre identificardor puesto por nosotros, si hacemos un **docker ps** podremos ver los nombres de los clusters y en la siguiente imagen hice un cluster con cada uno de los comando para que se pueda ver la diferencía.
 
