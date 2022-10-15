@@ -325,3 +325,35 @@ En este taller aprendí que es kind, que es una herramienta horientada hacia el 
 **Finalmente lanzamos el programa**
 
 ![ejemplo](/capturas/curso4/Resultado.PNG)
+
+**Un detalle importante en la instalación de GO es seguir los pasos que te pone en la propia página, para poder evitar problemas**
+
+Una vez echo el "hello world" de GO, se empieza con la descarga de KIND y hay unos puntos que me gustaría resaltar:
+
+* El método que se enseñaba en el taller que era con **KIND GO111MODULE="on" go get sigs.k8s.io/kind@v0.4.0** está **OBSOLETO** en su lugar debemos usar **go install sigs.k8s.io/kind@v0.4.0**
+* En caso de que no dispusieramos aun de GO instalado se puede descargar con la siguiente serie de comandos:
+          1. **curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.16.0/kind-linux-amd64**
+          2. **chmod +x ./kind**
+          3. **sudo mv ./kind /usr/local/bin/kind**
+
+Una vez que se tiene instalado KIND para practicar se realizaron ejercicio sencillos como la creación de un cluster, su borrado, ver sus logs y agregarle una imagen a nuestro cluster:
+
+* Para poder crear un cluster tendremos que escribir en nuestra consola el comando **sudo kind create cluster** una vez se acaben los procesos de creación nos saldra algo similar a la imagen, aunque el comando tambien se puede escribir **sudo kind create cluester --name nombre** la diferencía entre uno y otro se explica más adelante.
+
+![ejemplo](/capturas/curso4/CreacionDeUnNuevoCluster.PNG)
+
+**Si lanzamos un docker logs podremos ver los logs que se lanzan y en caso de que algún problema ocurriera es aquí donde nos informarian**
+
+![ejemplo](/capturas/curso4/logs.PNG)
+
+Como dije hay dos maneras de lanzar el comando y la diferencía es que en uno se nos creará un cluester con el nombre predeterminado que les asigna KIND mientras que en el otro dispondra de un nombre identificardor puesto por nosotros, si hacemos un **docker ps** podremos ver los nombres de los clusters y en la siguiente imagen hice un cluster con cada uno de los comando para que se pueda ver la diferencía.
+
+![ejemplo](/capturas/curso4/NewName.PNG)
+
+* Para borrar un cluster es tan sencillo como ejecutar un **sudo kind delete cluster --name nombreDelCluster**
+
+![ejemplo](/capturas/curso4/Delete.PNG)
+
+* Finalmente es que una de las ventajas de KIND es que podemos añadirle nosotros una imagen externa con docker, con el comando **kind load** podremos insertale una imagen que tengamos nosotros externamente y así si el cluster no la tiene se la descargar.
+
+![ejemplo](/capturas/curso4/imagenExterna.PNG)
