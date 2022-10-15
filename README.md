@@ -310,4 +310,18 @@ Finalmente en el talle hablo de los siguientes conceptos de kubernetes que son i
 
 ![ejemplo](/capturas/Curso3/Ejemplo.png)
 
+##15/10/2022
+###Inicio y finalización del taller Kind: Kubernetes en Docker
+En este taller aprendí que es kind, que es una herramienta horientada hacia el testing donde podemos en un contenedor de DOCKER correr los nodos y contenedores de Kubernetes. Tambien nos permite crear clusters y contruir imágenes, pero ojo está escrita en GO pero no es necesario disponer de un gran conocimiento como tal, pero lo más importante es que se trata de una herramienta multiplataforma.
 
+**Para poder hacernos una idea de super sencilla de GO simplemente vamos a crear un "hello world" en GO, la siguiente imagen es el código en GO**
+
+![ejemplo](/capturas/curso4/HolaMundoGo.PNG)
+
+**Para ejecutar y compilar seria estos dos comandos que tenemos aquí, IMPORTANTE mi programa se llama hello luego se tendría que cambiar al que se se use luego**
+
+![ejemplo](/capturas/curso4/CompilacionYEjecucionGO.PNG)
+
+**Finalmente lanzamos el programa**
+
+![ejemplo](/capturas/curso4/Resultado.PNG)
