@@ -361,3 +361,41 @@ Como dije hay dos maneras de lanzar el comando y la diferencía es que en uno se
 * Finalmente es que una de las ventajas de KIND es que podemos añadirle nosotros una imagen externa con docker, con el comando **kind load** podremos insertale una imagen que tengamos nosotros externamente y así si el cluster no la tiene se la descargar.
 
 ![ejemplo](/capturas/curso4/imagenExterna.PNG)
+
+## 18/10/2022
+### Inicio del curso de Introducción a Docker
+**Nota: Para poder seguir avanzando el los cursos de Kubernetes es necesario tener como mínimo tener visto hasta el Curso de Docker para desarroladores, tambien importante tener en cuenta que algunos de los conceptos o ideas que dispone Docker puede ser algo ya visto en Kubernetes, pero porque suelen ir muy de la mano**
+
+En este curso aprendí en primer lugar que es docker:
+
+**DOCKER:** Es un software que realiza una vitualización a nivel de sistema operativo gracias a lo llamado "contenedores", lo que lo diferencía con respecto a otras herramienta es su práctico método de "aislamiento" de un sistema o servicio para poder ser empleado en nuestra máquina.
+
+Lo se se consigue gracias a esto es que al realizar una compartición de recursos con docker, esta consuma los recursos únicamente necesarios, porque estará previamente cargado en memoria los recursos necesarios, **es importante tener en cuenta que este aislamiento de recursos es a nivel de KERNEL**.
+
+Los principales recursos para lograr este aislamiento son:
+
+* **Cgroups:** Son una serie de controles de jerarquia que nos permite definir la manera en la que nuestra máquina va asignar sus recursos a un conjunto de procesos, esto es gracias a asignación de valores de prioridad.
+
+**Por ejemplo: Si disponemos de un apache y este tiene 9 procesos y solo 1 servicio, suponiendo que todos tengan la misma prioridad,
+al ejecutarse todos al servicio le corresponde un 10% de la CPU.**
+
+* **Namespaces:** Es donde podemos almacenar uno o más identificadores únicos, pero ojo un mismo identificador puede estar definido en otros NameSpaces.
+
+**Por ejemplo Si dos empleados de empresas distintas empiezan a trabajar pueden coincidir y tener el mismo número de identificación,todo
+porque un identificador es del nameSpace de la empresa X y el otro es el de la empresa Y.**
+
+Claramente nosotros a un contenedor Docker le podemos definir a partir de unos limitadores cuanto debe consumir de nuestra máquina y que ella pude acceder a toda la indormación que dispone el contenedor, pero normalmente el contenedor no puede acceder a todo de lo que dispone la máquina, sobra decir que al tratarse de un servicio que utiliza clouds la portabilidad de los contenedores resulta cómoda.
+
+En Docker es importante tener mentalizados bien una serie de conceptos básicos que son:
+
+* **Docker Engine:** Es la aplicacción cliente-servidor y esta compuesto por 3 elementos:
+
+1. **Demonio Docker:** Es quien está a la escucha para poder ejecutar esos contenedores sobre nuestra máquina (se ejecuta en segundo plano).
+2.  **Rest API:** s imprescindible para realizar el desarrolo de otro sofware, porque es quien se encarga de que podamos comunicarnos con el Deminio Docker.
+3.  **La interfaz de línea de comandos (CLI):** A groso modo es el comando "docker" puesto que es lo que nos permite usar el servicio.
+
+**Esto sigue el un esquema de funcionamiento que es que la CLI llama al Rest API pidiendole una orden y la Rest API le manda esa tarea al Demonio Docker y es el Demonio quien le manda la orden al CLI**
+
+![ejemplo](/capturas/CursosDocker/Curso1/Esquema.png)
+
+* **Docker Registry:** Como resumen breve es el servicio que nos permite almanecar imágenes(este concepto será explicado más adelante), estas imágenes pueden ser privadas o públicas da igual.
