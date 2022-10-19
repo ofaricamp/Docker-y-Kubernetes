@@ -399,3 +399,85 @@ En Docker es importante tener mentalizados bien una serie de conceptos básicos 
 ![ejemplo](/capturas/CursosDocker/Curso1/Esquema.png)
 
 * **Docker Registry:** Como resumen breve es el servicio que nos permite almanecar imágenes(este concepto será explicado más adelante), estas imágenes pueden ser privadas o públicas da igual.
+
+## 19/10/2022
+### Finalización del Curso de Introducción de Docker
+
+Siguiendo con lo explicado anteriormente, pero antes de todo resaltaré que los apartados de ** volumns. persistentVolumns y que es un DOCKERFILE como se lanza y etc,... simplemente los menciono aquí, porque YA ESTAN EXPLICADOS EN KUBERNETES**.
+
+Docker está compuesto principalmente por dos elementos que son fundamentales que son la **Imagen** y **Contenedor**
+
+* **Imagen:** Es una "platilla" de solo lectura que dispone de unos parámetros preparados para poder ejecutarse, pero ojo todas basadas en sistemas Linux, debemos tener en cuenta que todo lo que hagamos gira entorno a la imagen o imagenes que dispongamos.
+
+* **Contenedor:**  Es una instancia de la imagen, por así decirlo es como si fuera un directorio padre y dentro tiene subdirectorios, esto actua como una máquina virtual es decir podemos ejecutarlos,reiniciarlos.
+
+Docker al igual que Kubernetes dispone de unos comandos propios:
+
+**Docker tiene docker start+ id del contenedor y docker stop + id del contenedor** que como indican sus nombres da inicio y para el servicio respectivamente y si nos fijamos en la imagen podemos ver como el contenedor de Ubuntu pasa a Exited con el stop mientras que con el start pasa a UP.
+**Nota: en los comando no tenemos porque poner el ID completo sirve con poner los 3 primeros caracteres del mismo**
+
+![ejemplo](/capturas/IntroduccionDocker/startYStop.png)
+
+**Dockert images devuelve una lista de las imagenes que tenemos creadas mientras que el comando docker history + id de la imagen nos devuelve un historial de cambios.**
+
+![ejemplo](/capturas/IntroduccionDocker/imagesYHistory.png)
+
+Con el comando **docker inspect + id de la imagen** podremos obtener toda la información que esta tiene y si nos fijamos la estructura es similar a los ficheros .yml que tratamos en Kubernetes anteriormente.
+
+![ejemplo](/capturas/IntroduccionDocker/inspect.png)
+
+Con el comando **docker search + nombre de la imagen** obtendremos una lista de todas las imagenes con ese nombre y si hacemos un **docker pull + nombre de la imagen** podremos descargala sin problemas.
+
+![ejemplo](/capturas/IntroduccionDocker/dockerPullUbuntu.png)
+
+Con **docker rmi + id de la imagen** borraremos esa imagen de nuestra máquina.
+
+![ejemplo](/capturas/IntroduccionDocker/dockerRmi.png)
+
+**Pero cuidado con el borrado porque NO PODREMOS BORRAR UN CONTENEDOR QUE NO ESTEA APAGADO** en la siguiente imagen intento eliminar el hello-world, pero no puedo al estar lanzado por tanto con el comando **docker ps** obtengo la informacion de los contenedores que estan encendidos y despues usando **docker rm + id del contenedor** lo apagaremos y entonces ya podremos usar el comand rmi.
+
+![ejemplo](/capturas/IntroduccionDocker/rmiDocker.png)
+
+Con **docker run -it + nombre de la imagen** nos ejecutará la imagen en cuestion y ojo en caso de que no la tengamos descargada nos la descarga y una vez la tengamos la lanzará.
+
+![ejemplo](/capturas/IntroduccionDocker/runHelloWorld.png)
+
+Simplemente por enseñar lo curioso que resulta docker yo si lanzo el comando **run docker -ir ubuntu** lanzará una consola funcional de linux en la que como se ve en la imagen puedo hacer un **ls y un apt update SIN NINGUN PROBLEMA**.
+
+![ejemplo](/capturas/IntroduccionDocker/runUbuntu.png)
+
+El siguiente comando es un comando **docker run** pero con una variante que es que le asignaremos al contenedor un puerto de nuestro ordenador luego lanzaremos un contenedor de ejemplo con el valor de 5000 y veremos que pasa.
+**El programa es de python y me equivoco a proposito usando un puerto que tengo ocupado para que se aprecie que pasa cuando lo hacemos con un puerto que no está disponible**
+
+![ejemplo](/capturas/IntroduccionDocker/puerto.png)
+
+**Ahora si abrimos nuestro navegador u ponemos localhost:82(que es el puerto que le acabé asignando) miraremos que lo lanza PERFECTAMENTE**
+
+![ejemplo](/capturas/IntroduccionDocker/holaMundoPy.png)
+
+Con **docker network ls** obtendremos la lista de todos los networks que tenemos en nuestra máquina y si nos fijamos hay 3 tipos de drivers:
+1. bridge: Es el que docker pone por defecto y emplea una interfaz fuente.
+2. hots: se emplea para enlazar distintos contenedores dentro de un host.
+3. none: sirve para aislar a un contenedor que no disponga de red.
+
+Como aclaración sobre las Redes Bridge estas se emplean para aislar los segmentos de red y los contenedores solo se pueden comunicar con otros de la red UNICAMENTE,
+claramente podremos añadir y quitar contenedores que disponga la red, es importante saber que los containers de esta red cuando salen van
+A LA PRIMERA RED QUE ENCUENTRE DISPONIBLE.
+
+Tambien solo se nombró a nivel teórico puesto que resultaría algo mas avanzado acerca de los Links de las Redes Bridge que es lo que nos permite vincular varios contenedores sin necesidad de exponer más puertos, que usa variable de entornos para almacenar datos, transmite información de manera segura entre contenedores y que para usarlos es **imprescindible el uso de nombres identificadosres(como cuando en kubernetes poniamos nuestro propio nombre para identificar un Container pues en docker no iba a ser menos)**
+
+![ejemplo](/capturas/IntroduccionDocker/networksDocker.png)
+
+Pero ojo nosotros podemos definir nuestro propio network con **docker create -d + tipo de driver + nombre del network**.
+
+![ejemplo](/capturas/IntroduccionDocker/createNetwork.png)
+
+Ahora con **docker network inspect + nombre del network** nos devolverá la información del network.
+
+![ejemplo](/capturas/IntroduccionDocker/networkInspect.png)
+
+De los Volumens solo resaltaré que si lanzamos un **docker volume inspect + id del servicio** podemos ver como ciertamente la estructura de su contenido es muy similar a la ya vista en Kubernetes.
+
+![ejemplo](/capturas/IntroduccionDocker/InspectVolumen.png)
+
+Como remalque final me gustaría resalta que realmente los comandos básicos de docker siguen una extructura muy similar, simplemente tenemos que saber bien que queremos obtener o que queremos cambiar en nuestro contenedor y que se puede apreciar como Docker y Kubernetes resultan tener cosas similares entre ellos.
