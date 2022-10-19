@@ -480,4 +480,4 @@ De los Volumens solo resaltaré que si lanzamos un **docker volume inspect + id 
 
 ![ejemplo](/capturas/IntroduccionDocker/InspectVolumen.png)
 
-Como remalque final me gustaría resalta que realmente los comandos básicos de docker siguen una extructura muy similar, simplemente tenemos que saber bien que queremos obtener o que queremos cambiar en nuestro contenedor y que se puede apreciar como Docker y Kubernetes resultan tener cosas similares entre ellos.
+Como nota final me gustaría resalta que realmente los comandos básicos de docker siguen una extructura muy similar, simplemente tenemos que saber bien que queremos obtener o que queremos cambiar en nuestro contenedor y que se puede apreciar como Docker y Kubernetes resultan tener cosas similares entre ellos.
