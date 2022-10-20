@@ -481,3 +481,20 @@ De los Volumens solo resaltaré que si lanzamos un **docker volume inspect + id 
 ![ejemplo](/capturas/IntroduccionDocker/InspectVolumen.png)
 
 Como nota final me gustaría resalta que realmente los comandos básicos de docker siguen una extructura muy similar, simplemente tenemos que saber bien que queremos obtener o que queremos cambiar en nuestro contenedor y que se puede apreciar como Docker y Kubernetes resultan tener cosas similares entre ellos.
+
+## 20/10/2022
+### Inicio del Curso de Docker Para Desarroladores (es un Curso de 6 horas a si que da para rato)
+La primera parte del curso es de introducción de docker, la miré entera porque al ser con profesores distintos podrían cambiar matices o que se enfoquen más en otras cosas y honestamente la hora y media que dura esta introducción de Docker esta mejor explicada, en esencial explica lo mismo que el anterior solo que remarka mucho sobre un tema importante de Docker que es el porqué se usa.
+
+Docker tiene el dicho de **RUN, BUILD AND SHIP, ANY APP ANYWHERE** y este dicho incluye los 3 grandes beneficios de Docker que son:
+
+* **Portabilidad:** Un contenedor es ejecutado por el Docker Engine, un demonio que es fácilmente instalable en todas las distribuciones Linux y 
+también en Windows(aunque personalmente es más cómodo intalarte una consola de ubuntu y usarla que la de propio windows, simplemente porque la de Ubuntu reculta mucho más cómoda y práctica con respecto a la de Windows), un contenedor ejecuta una imagen de docker, que es una representación del sistema de ficheros que el contenedor va a utilizar para su ejecución. Una vez que hemos generado una imagen de Docker independientemente del sistema operativo que dispongamos.
+
+* **Inmutabilidad:** Una aplicación la componen tanto el código fuente como las librerias del sistema operativo y del lenguaje de programación necesarias para la 
+ejecución de dicho código, por tanto el código siempre ejecutará con las misma versión del código fuente y sus dependencias.
+
+* **Ligereza:** Los contenedores comparten entre ellos el sistema operativo de la máquina, peor cada uno dispone de sus propios procesos, dicheros, espacio y usuarios(como se explicó con los Cgroups y namespaces), gracias a esto es lo que hace que su ejecución resulte más ligera que otros métodos disponibles.
+
+Luego me gustó mucho que al final del curso el profesor dió su opinión profesional acerca de Docker y concluyó citando "Ignorar Docker será una desventaja
+competitiva para cualquier compañía" dando a entender que es probable que el sistema de contenedores de Docker acabe siendo algo fundamental para cualquier trabajo puesto que resulta una muy útil herramienta.
