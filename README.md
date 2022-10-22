@@ -498,3 +498,59 @@ ejecución de dicho código, por tanto el código siempre ejecutará con las mis
 
 Luego me gustó mucho que al final del curso el profesor dió su opinión profesional acerca de Docker y concluyó citando "Ignorar Docker será una desventaja
 competitiva para cualquier compañía" dando a entender que es probable que el sistema de contenedores de Docker acabe siendo algo fundamental para cualquier trabajo puesto que resulta una muy útil herramienta.
+
+## 22/10/2022
+### Contunuación del curso de Docker para Desarroladores
+Un tema a tratar cuando se habla de Docker son los microservicios, pero antes de hablar de ellos hay que definir que es una **Arquitectura SOA(Service Oriented Architecture):**
+
+Es un componente que ofrece un servicio a distintos componentes para que todos consuman de ese Servicio (aunque se suele decir que SOA ofrece un contrato de una 
+API REST versioonada, es decir que sea más sencillo actualizar nuestro servicio gracias a que si se pasa a una version 3.0 los servicios que usen la 1.0 puedan
+aun usarla hasta que se actualicen y ya no se emplee la 1.0) y consiste en hacer los siguiente puntos:
+
+* Minimiza al máximo las dependencias de un componente, es decir hacer el menor número de llamadas posible a otro, en algunos caso no se puede seguir este objetivo
+pero siempre hay que tratarlo.
+
+* Abstraer su implementación, es decir que nos sea indiferente en que lenguaje fue escrito o en que sistema operativo se está, claramente como en todo habrá lenguajes o sistemas operativos que hagan que la tarea resulte mucho más sencilla.
+
+* Maximizar su reutilización, que cuando hagamos un componente se pueda reutilizar el mayor número de veces posible, resultará contradictorio puesto que antes se comentó de minimizar las dependencias, pero imaginemos que tenemos que hacer un programa y necesitamos de manera óptima 3 componentes y 2 de ellos ya estan en un contenedor cada uno,por tanto solo deberémos hacer un componente siendo una optimización de tiempo increible.
+
+* Nuestros servicios debe tener un ciclo de vida TOTALMENTE INDEPENDIENTE, es decir que si tenemos que cambiar o actualizar un componente SOLO actualizamos o cambiamos
+ese componente y no el resto de componente que está relacionados con el, porque actualizar un solo componente es más comodo que actuañizar un componente entero.
+
+* Evitar que el componente se pueda caer y afectar a los clientes finales, es decir que los fallos no afecten negativamente a nuestros cliente.
+
+* Realizar tests de los componentes continuamente y de manera automático para poder tener un servicio fuerte a prueba de muchos errores o problemas que puedan suceder en su ciclo de vida
+
+Microservicios consta de los siguientes puntos:
+
+1. El microservicio sigue los principio en la arquitectura SOA, podemos decir que es una evolución de la misma. Busca reducir al máximo el tamaño de nuestro componente, un ejemplo que se puede ser que un microservicio puede ser simplemente UNA SOLA FUNCIÓN
+
+2. Que el de desarrollo del componente se pueda realizar en un par de semanas.
+
+3. Que necesite un equipo de desarrolladores pequeño, entres 3 y 6 personas como mucho.
+
+4. El servicio debe ser totalmente independiente, es decir que no dependa de otro servicio para poder realizar su función.
+
+5. Hacer que el despliegue sea sencillo, por ejemplo que uno de nuestros microservicios lance una sentencia mysql unicamente, pues sencillamente pongamos la llamada en
+el lugar correspondiente.
+
+6. Hacer que los microservicios se puedan reutilizar al máximo, usando el ejemplo anterior sería hacer que la consulta sirva para cualquier programa que realice esa
+consulta, teniendo un servicio que abarca mucho más.
+
+En conclusión los microservicios es la arquitectura SOA llevada al extremo y hacer todo lo más dividido y pequeño posible.
+
+A lo largo del curso tambien se trataron temas sobre el como usar el comando **docker build**, pero en una práctica realizada en Kubernetes ya se empleó dicho comando así como los comandos de **inspect, ps, image,etc...**, pero si DEBO resaltar 2 detalles muy importantes teóricos de los que se hablaron.
+
+* La imagen siguiente corresponde a los pasos que suceden cuando deseamos transforma nuestra aplicación en una aplicación de microservicios.
+
+![ejemplo](/capturas/IntroduccionDocker/Dockerizar.png)
+
+La manera de teórica de hacerlo consta de **3 pasos fundamentales** que son:
+
+1. **Dockerizar nuestro host o servicio**, consiste en hacer lo que corre en una máquina virtual estea dentro de un componente, con esto hace que la instalación de un servicio sea igual, es decir instala todo lo necesario para que corrar, para eso debemos empaquetarlo con una imagen de docker y en vez de hacer un script hacer un "Docker Run" y ya está instalada y corriendo. El principal objetivo de esto es el ayudarnos a instalar un servicio o aplicación de una manera más sencilla omitiendo los posibles problemas que puedan ocurrir como de que 2 personas tienen un sistema operativo diferente cada una y cada uno tiene que instalarlo de una manera diferente al otro, algunas pudiendo ser más complicadas que otras.
+
+2. Una vez Dockeizado nuestro host, lo tendremos todo en un contenedor, por tanto el siguiente paso es **identificar que compone esencialmente el servicio**, en caso del esquema el host se comopone de **Systemd, Ngninx, Python y de Node.js**, una vez identificados procedemos al ultimo paso.
+
+3. **Dividir lo identificado anteriormente en microservicios**, como ultimo paso separaremos ñp ua identificado en **un container para cada uno**, es decir uno para Systemd, uno para Nginx, uno para Python y uno para Node.js, así tendremos el host en 4 contenedores que se pueden actualizar individualmente siendo algo mucho más comodo y práctico, aun sumandole que se pueda llegar a reutilizar cada contenedor en un proyecto diferente.
+
+En la parte práctica de comandos comunes en Docker, estan todos practicamente vistos, tambien mencionan como en el anterior la página de DockerHub, que simplemente es como una "nube" donde podemos subir nuestros contenedores e imágenes, pero para practicar mejor recomienda el que antes de usarlo se comprenda como funciona Docker y en que consiste el mismo, puesto que da comodidad para el programador, pero es mejor que la dea y sepanos que clase de comodidad nos da.
