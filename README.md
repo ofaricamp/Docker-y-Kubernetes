@@ -562,6 +562,7 @@ Honestamente a efecto práctico en el curso no se aprendió algo distinto a lo e
 A pesar de el curso ser útil, en mi opinión es muchisimo mejor empezar por la parte de kubernetes antes (no solo porque lo nombran), si no porque esta más "actualizado" digamos y en mi opinión mejor estructurado.
 
 **El siguiente enlace corresponde al directorio de GitHub empleado para toda practica sobre este curso y me gustaría detallar algo MUY IMPORTANTE, en la carpeta que pone "auto-build" su versión esta OBSOLETA PORQUE YA NO LE DAN SOPORTE A LA VERSION 2.7, a si que si se quiere realizar la prueba bien debemos cambiar la version a las 3.1 o incluso con la 3.0, simplemente por una que al menos tenga soporte**
-![linkDeReferencia]( https://github.com/OpenWebinarsNet/docker-for-devs)
+
+![link Del Repositorio GitHub Con Los Archivos]( https://github.com/OpenWebinarsNet/docker-for-devs)
 
 Finalmente cabe mencionar que en cuanto a los Networks que porporciona Docker son **Los mismos que en Kubernetes** hasta usan el network Bridge como de predeterminado, lo que si añade a mayores es el concepto teórico acerca de comando "docker-compose" que es como si fuera el comando docker salvo que este se puede encargar de varios contenedores al mismo tiempo, pero ojo **aunque sirva para un solo contenedor no se usa docker-compose si se sabe que trataras con ÚNICAMENTE un contenedor para eso se tiene el comando Docker que se encarga de gestionar un contenedor como se enseñó anteriormente**.
