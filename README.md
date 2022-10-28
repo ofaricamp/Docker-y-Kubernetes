@@ -566,3 +566,50 @@ A pesar de el curso ser útil, en mi opinión es muchisimo mejor empezar por la 
 ![link Del Repositorio GitHub Con Los Archivos]( https://github.com/OpenWebinarsNet/docker-for-devs)
 
 Finalmente cabe mencionar que en cuanto a los Networks que porporciona Docker son **Los mismos que en Kubernetes** hasta usan el network Bridge como de predeterminado, lo que si añade a mayores es el concepto teórico acerca de comando "docker-compose" que es como si fuera el comando docker salvo que este se puede encargar de varios contenedores al mismo tiempo, pero ojo **aunque sirva para un solo contenedor no se usa docker-compose si se sabe que trataras con ÚNICAMENTE un contenedor para eso se tiene el comando Docker que se encarga de gestionar un contenedor como se enseñó anteriormente**.
+
+## 28/10/2022
+### Inicio del Curso de Kubernetes para desarroladores
+El curso inicia con un repaso general de docker sin profundizar mucho en los conceptos de orquestadores, que es un contenedor y etc..., lo que si habla es de una herramienta que se llama **Minikube** que nos tener de un entorno sencillo de Kubernetes con la mayor parte de sus funcionalidades, **pero ojo esta virtualización no tiene porque ser necesaria en Linux.**
+
+La instalación es sencilla (el ejemplo de instalación está realizado en linux por si alguien quisiera descargarlo allí):
+
+1. Insertamos en la consola los comandos **wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 chmod +x minikube-linux-amd64** y
+**sudo mv minikube-linux-amd64 /usr/local/bin/minikube**
+
+2. Una vez lanzados estos comando simplemente lanzaremos un comando **minikube** para que nos salga el --help
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/InstalarMinikube.png)
+
+Una vez instalado simplemente tendremos que lanzar el commando **minikube start** para que nos instale todo lo necesario, pero ojo tenemos que tener en cuenta que no debe estar activo ningun contenedor y de los permisos necesarios, en mi caso me ocurrieron problemas y simplemente ejecuté el comando con un **--force** y nos saldrá la siguiente pantalla.
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/MinikubeStart.png)
+
+Luego se realiza un repaso sobre las Labels, los Volumenes y todos estos **objetos de Kubernetes**, porque ahora que se conocen, se les debe llamar con el nombre apropiado porque no quita que se tratan de objetos que definimos en un fichero .yml, pero aquí hacen la aparición dos nuevos objetos (aunque uno no es realmente tan nuevo) que son:
+
+* **Pod Policies:** Es lo que se encarga de que los pods UNICAMENTE puedan entrar a contenedores que dispongan del mismo Namespaces, el termino de Namespaces ya fue explicado anteriormente, en las siguientes imágenes representan lo que nos devuelve un **kubectl + NamespaceDefinido -n get all** nos devolveran todos lo asociado al Namespace definido.
+
+**Namespace TEST(creado por nosotros)**
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/Test.png)
+
+**Namespace Default (definido en propio kubernetes si no asignamos nosotros ninguno)**
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/Default.png)
+
+Como podemos ver, cada get nos devuelve unicamente lo definido en esos namespaces, pero cuidado al definirlo porque si queremos que nuestras Pod Policies sean correctas debemos saber muy bien que nodo o contenedor definir con determinado Namespace, puesto que una mala asignación de nombre hace que no se puedan comunicar entre ellos y por tanto dara lugares a errores en nuestro servicio por falta de información o comunicación entre PODS.
+
+* **Ingress:** Nos permite exponer nuestra aplicación al público y definir las rutas de entrada de una manera nátiva de Kubernetes, tratandose de algo más administrativo es un objeto que definiresmos en nuestro fichero .yml y es importante tenerlo claro.
+
+Explicandolo a partir de este ejemplo:
+
+Esto repesenta lo que tendremos en un fichero llamado **ingress.yml**, si nos fijamos estan definidos 2 hosts distintos, que lo que hará es que cuando decidamos lanzar uno de estos Hosts DEBEMOS LLAMARLO POR SU NOMBRE, es este caso concreto debemos tener 2 fichero .yml uno llamado **hola.yml** y oto **adios.yml** que su ruta es el localhost.
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/IngresYML.png)
+
+Haciendo un curl -H del nombre definido en el host del ingress.yml y el path nos ejecutará el servicio.
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/Hola.png)
+
+**Esquema Sobre INGRESS**
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/EsquemaIngres.png)
