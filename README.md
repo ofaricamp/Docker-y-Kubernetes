@@ -613,3 +613,47 @@ Haciendo un curl -H del nombre definido en el host del ingress.yml y el path nos
 **Esquema Sobre INGRESS**
 
 ![ejemplo](/capturas/KubernetesParaDesarrolladores/EsquemaIngres.png)
+
+## 29/10/2022
+### Finalización del Curso de Kubernetes para desarroladores
+En el último apartado del curso se mencionan varias maneras de desarrolo en Kubernetes (son 4, pero realmente la que se acaba empleando es o la ultima o incluso hacer gestiones con docker-compose), para ello se utilizan unas herramientas o mejor dicho métodos que son los siguientes:
+
+* **Desarrolarlo Directamente con Kubernetes:** Para realizar los cambios con propio Kubernetes tenemos que seguir el esquema de **BUILD -> PUSH -> PULL -> DEPLOY**, su nombre se debe a que son los comandos que tenemos que emplear para hacer todos los cambios, pero no solo eso si no que tambien debemos cambiar la imagen que tenemos y retocar el fichero .yml que disponemos, resultando ser un método tedioso porque tiene muchos pàsos y lento porque puede llegar a tardar un par de minutos este proceso, siendo muy poco óptimo si lo queremos llevar a empresa.
+
+* **Con el método BUILD -> DEPLOY:** Para realizar cambios con este método, deberemos tener previamente descargados Minikube y Docker, pero a pesar de disponer de herramientas su métodología sigue siendo la misma que la que se usa con kubernetes, solo que usaremos comando como **minikube env, Docker Build, etc...**, pero la principal pega de este método es que **Solo vale para clusters locales**, por tanto no se puede usar tan libremente.
+
+* **Con la herramienta de SKAFFOLD/DRAFT:**  Para utilizar este método deberemos descargarnos SKAFFOLD en https://github.com/GoogleContainerTools/skaffold o descargarnos DRAFT en https://github.com/Azure/draft , su principal función es automatizar lo que se realiza en la estructura BUILD -> PUSH -> PULL -> DEPLOY, previamente deberemos definir un SKAFFOLD.yml como se muestra en la imagen, pero como dije antes automatiza el método anterior es decir, que cada mínimo cambio realizado estará lanzando una y otra vez los comando de Kubernetes siendo igual de lento aunque menos "tedioso" porque usa menos comandos(aunque yo no conseguí descargarlos por problemas de paquetes que tenía instalados de otras aplicaciones).
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/Shaffold.png)
+
+* **Con Cloud Native Development:** Finalmente tenemos el ultimo método explicado en el curso, que resulta el más rápido y cómodo puesto que no usamos los comandos anteriores y nos permite realizar cambios y actualizarlos en tiempo real, es decir resulta Cómodo y Rápido de realizar y debemos hacer lo siguiente:
+
+1. **Instalar una herramienta llamada Oketo** y es tan facil como hacer un sudo apt-get install Oketo en linux.
+
+2. Una vez lo tenemos simplemente definiremos un pequeño fichero .yml donde simplemente definiendo el nombre del POD al que se refiere y a que afecta ya lo tendremos preparado.
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/Oketo.png)
+
+3. Lo siguiente será lanzar en consola el comando **oketo up** en la carpeta donde tendremos nuestro contenedor y nos saldra lo siguiente, informandonos de todo lo necesario y que se realizó correctamente.
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/OketoResult.png)
+
+4. Finalmente vamos hacer un simple cambio en nuestro servicio, tan sencillo como cambiar el nombre de un encabezado de la siguiente manera.
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/CambioCodigo.png)
+
+**Antes de realizar cualquier cambio.**
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/Original.png)
+
+**Despues del cambio**
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/Cambio.png)
+
+**Nota importante, todos los métodos llevan al mismo resultado y el principal problema que tienes es que debemos andar cambiando la imagen todo el rato mientras que en Oketo no debemos hacer eso, teniendo los cambios en segundos y pudiendo si se quisiera añadir (en algunos casos) lineas de depuración a nuestra aplicacción, aunque todos los métodos llevan al mismo resultado y cada quien es libre de usar el que más le guste.**
+
+* Esquema de como es el ciclo de vida de estos cambios siendo el de la derecha perteneciente al de Oketo y el de la izquierda al del resto.
+
+![ejemplo](/capturas/KubernetesParaDesarrolladores/EsquemaCloud.png)
+
+
