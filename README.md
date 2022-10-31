@@ -656,4 +656,110 @@ En el último apartado del curso se mencionan varias maneras de desarrolo en Kub
 
 ![ejemplo](/capturas/KubernetesParaDesarrolladores/EsquemaCloud.png)
 
+## 31/10/2022
+### Inicio y finalización del Taller de Knative: Uso de Serverless en Kubernetes y final de la carrera de Kubernetes
+Siempre que se habla de serverless en Kubernetes se suele hablar de Knative, que es un proyecto open sourcer y se trata de una prataforma bassada en despliegue serverless en Kubernetes. Usa las primitivas base de Kubernetes, es decir no inventan nada nuevo emplean la teoría de los PODS, logs, labels,... que hemos estado usando hasta ahora, pero lo mas inportante es que provee **aplicaciones basadas en contenedores**, es decir puede correr en cualquier sitio basado en Kubernetes.
 
+Antes de explicar sobre Knative debemos definir que es serverless, dispone de muchas definiciones pero una más genérica. Serverless no es que no se tengan servidores, se refiere manejar manualmente todos los servidores de la aplicacción, es decir nos permite ejecutar y escalar nuestros servicios segun nuestra escala de demanda, por ejemplo si no hay trabajo se escala a 0 y en cambio si lo hay y se trabajasa aumenta la escala. El lado bueno de esto es que a nosotros se nos suele cobrar cuando se esta consumiendo la CPU y los recursos físicos y si estamos en este sistema con un escalado de 0 no nos cobran puesto que no consumimos nada.
+
+**Si nos preguntamos si se debe elegir entre Severless o Microservicios, es como todo depende de la empresa o del tipo de trabajo que querámos hacer nos resulta mejor una u otra.**
+
+Para poder emplear Knative, primero deberemos instalarlo en nuestra consola de manera tradicional y una vez descargado, vamos a hacer unas pruebas muy sencillas, de como funciona Knative y conceptos básicos que debemos tener en cuenta.
+
+* Una vez creamos un servicio debemos definir tambien un .yml, que contenga la misma imagen que el servicio y ponerle que usaremos la API de Knative.
+
+![ejemplo](/capturas/KubernetesServerless/KnativeYML.png)
+
+* Aunque tambien podemos crear nuestro propio servicio Knative siempre que pongamos el comando **kn service create + nombreDelServicio --image MiImagen** y nos saldrá por consola algo muy similar a lo de la imagen.
+
+![ejemplo](/capturas/KubernetesServerless/KnCreate.png)
+
+* Por defecto Knative cuando se despliega un servicio lo arranca, pero si en un periodo de 60 segundos, este se escalara a cero, es decir pasará a terminating , **pero ojo se crean dos contenedores uno es el servicio en si y el otro es un contenedor encargado de gestionar todo el Knative (tambien llamado proxy)**.
+
+**Dentro de los 60 segundos**
+
+![ejemplo](/capturas/KubernetesServerless/AntesDe60Seg.png)
+
+**Una vez pasaron 60 segundos sin realizar nada sobre el servicio**
+
+![ejemplo](/capturas/KubernetesServerless/DespuesDe60Seg.png)
+
+* Knative ya nos crea la URL del servicio automáticamente y si hacemos un **kn service list** obtendremos la lista de todos los servicion con Knative en el(y si nos fijamos se ejecutan como si fuera un servicio más de Kubernetes sin problema).
+
+![ejemplo](/capturas/KubernetesServerless/KnServiceYEjecucion.png)
+
+* Para borrar es tan sencillo como poner el comando **kn delete +nombreDelServicio**.
+
+![ejemplo](/capturas/KubernetesServerless/Delete.png)
+
+**Como dato si con Kubernetes mandamos obtener una lista de todos los servicio verémos que Knative crea todo lo necesario para lanzar el servicio definido en el.**
+
+![ejemplo](/capturas/KubernetesServerless/ServiciosCreadosPorKnative.png)
+
+**Ojo que Knative tambien podemos tener o definir variables de entorno en el .yml sin problema alguno**
+
+![ejemplo](/capturas/KubernetesServerless/EnvVariableDeEntorno.png)
+
+* Con el comando **kn revision list** nos da la información de si todo está funcionando correctamente y en caso de algo ir mal los veríamos reflejado en el apartado de CONDITIONS.
+
+![ejemplo](/capturas/KubernetesServerless/Revision.png)
+
+Si nos fijámos en la imagen anterior, sale un concepto nuevo llamado **traffic**, el tráfico no es más que el porcentaje de request o llamadas que se le redirige a un servicio. En este caso vemos que greeter-v2 tiene el 100% del tráfico, porque por defecto todo el tráfico va redirigido a la última version lanzada del servicio, pero nosotros lo podemos cambiar de una manera muy sencilla.
+
+Tomando de referencía el mismo ejemplo, nosotros podemos definir en nuestro fichero .yml el apartado del tráfico, para apreciar bien el cambio simplemente vamos a poner que greeter-v1 disponga de todo el tráfico mientras que greeter-v2 no tenga (es decir no le llegaran peticiones).
+
+![ejemplo](/capturas/KubernetesServerless/tafic.png)
+
+**Ahora lo lanzamos para comprobar que el cambio funciona correctamente**
+
+![ejemplo](/capturas/KubernetesServerless/TraficoCambiado.png)
+
+Los dos ultimos conceptos de knative es sobre el **Knative Eventing y el Autoescaling**. Empezando por el autoescaling es lo que nos permite tener una gran cantidad de peticiones ejecutandose en paralelo, se encarga de crear una cantidad de PODS copia para evitar tiempos de carga elevados, pero debemos tener cuidado y tener bien claro lo siguiente:
+
+Cuando tenemos muchas peticiones si no definimos nosotros en un fichero .yml un límite, tendremos PODS infinitos y entonces estaran consumiendo mucha CPU y por tanto aumenta el coste del servicio y hay dos maneras de definir estos límites.
+
+**Ejemplo de sin límites**
+
+![ejemplo](/capturas/KubernetesServerless/Escalado.png)
+
+1. Definimos en el fichero .yml un autoescaling y entre comillas dobles insertaremos el **número máximo de PODS que gestionaremos**, el problema de este método es que no disponemos de un mínimo de PODS por tanto siempre partirá de cero.
+
+![ejemplo](/capturas/KubernetesServerless/Autoescaling.png)
+
+2. Podemos definir tambien un máximo y un mínimo, para partir siempre desde el mínimo y se definiría en el .yml de la siguiente manera.
+
+![ejemplo](/capturas/KubernetesServerless/EscaladoMinYMax.png)
+
+Ahora que definimos una mínimo y un máximo podemos apreciar lo siguiente.
+
+**Al arrancar el servicio siempre se nos lanzará una cantidad de PODS equivalentes a los del mínimo definido en el fichero**.
+
+![ejemplo](/capturas/KubernetesServerless/Minimo.png)
+
+**Y ahora no se podrá pasar del máximo**.
+
+![ejemplo](/capturas/KubernetesServerless/Maximo.png)
+
+Finalmente Knative Eventing parte del mismo concepto de servicios, **salvo que ahora los PODS arrancan mediante eventos NO mediante peticiones**.
+
+Knative dispone de diversos esquemas de tipos de desarrollo desde lo más simple a los más complejo, pero el que más se suele emplear es el de comunicar nuestros servicios através de un canal y es este el encargado de lanzar los eventos correspondientes a sus respectivos servicios esto suele ser através de un mensaje, **pero se debe tener en cuenta que se pueden dar casos que podemos llegar a tener eventos que en esencia son peticiones**.
+
+**Esquema básico de canales**.
+
+![ejemplo](/capturas/KubernetesServerless/Esquema.png)
+
+* Lo primero que debemos hacer como ya es costumbre es definir un canal en un fichero .yml (SOLO EL CANAL).
+
+![ejemplo](/capturas/KubernetesServerless/CanlYML.png)
+
+* Una vez definido el canal simplemente iremos a nuestro fichero .yml del serivio y definiremos el mensaje que necesita para lanzarse (es este caso se lanza cada minuto un evento que su mensaje está definido en los llamado **jsonData**).
+
+![ejemplo](/capturas/KubernetesServerless/EjemploDelCanal.png)
+
+**Su ejecución no dispone de ninguna complicación simplemnte deberemos lanzar los servicios como hicimos hasta ahora y esperar a que pase el tiempo definido de ejecución del evento**
+
+Tambien es importante mencionar que es posible conectar canales entre si si se definen como en la imagen en el fichero .yml.
+
+![ejemplo](/capturas/KubernetesServerless/ConectarCanales.png)
+
+***Como nota final sobre la carrera de Kubernetes me pareció una carrera que está bien el disponer de algun conocimiento básico sobre Kubernetes, al inicio es algo dificil entre que tienes que aprender o tener minimamente claro los conceptos básicos para saber que estas haciendo (como programación) y despues el realizar alguna practica para entenderlo y a veces el sistema operativo o los puertos no ayudan mucho a facilitar las cosas, me parecieron buenos cursos, bien explicados y que lo que son los conceptos básicos estan en común con docker y pienso que fue mejor empezar por kubernetes y aprender los conceptos que empezar en docker (porque en algunos ejemplo de docker se emplea Kubernetes).***
