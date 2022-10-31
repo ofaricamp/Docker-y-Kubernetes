@@ -686,7 +686,7 @@ Para poder emplear Knative, primero deberemos instalarlo en nuestra consola de m
 
 * Knative ya nos crea la URL del servicio automáticamente y si hacemos un **kn service list** obtendremos la lista de todos los servicion con Knative en el(y si nos fijamos se ejecutan como si fuera un servicio más de Kubernetes sin problema).
 
-![ejemplo](/capturas/KubernetesServerless/KnServiceYEjecucion.png)
+![ejemplo](/capturas/KubernetesServerless/KnServiceListYEjecucion.png)
 
 * Para borrar es tan sencillo como poner el comando **kn delete +nombreDelServicio**.
 
@@ -698,7 +698,7 @@ Para poder emplear Knative, primero deberemos instalarlo en nuestra consola de m
 
 **Ojo que Knative tambien podemos tener o definir variables de entorno en el .yml sin problema alguno**
 
-![ejemplo](/capturas/KubernetesServerless/EnvVariableDeEntorno.png)
+![ejemplo](/capturas/KubernetesServerless/EnvVariablesDeEntorno.png)
 
 * Con el comando **kn revision list** nos da la información de si todo está funcionando correctamente y en caso de algo ir mal los veríamos reflejado en el apartado de CONDITIONS.
 
@@ -708,7 +708,7 @@ Si nos fijámos en la imagen anterior, sale un concepto nuevo llamado **traffic*
 
 Tomando de referencía el mismo ejemplo, nosotros podemos definir en nuestro fichero .yml el apartado del tráfico, para apreciar bien el cambio simplemente vamos a poner que greeter-v1 disponga de todo el tráfico mientras que greeter-v2 no tenga (es decir no le llegaran peticiones).
 
-![ejemplo](/capturas/KubernetesServerless/tafic.png)
+![ejemplo](/capturas/KubernetesServerless/trafic.png)
 
 **Ahora lo lanzamos para comprobar que el cambio funciona correctamente**
 
@@ -750,7 +750,7 @@ Knative dispone de diversos esquemas de tipos de desarrollo desde lo más simple
 
 * Lo primero que debemos hacer como ya es costumbre es definir un canal en un fichero .yml (SOLO EL CANAL).
 
-![ejemplo](/capturas/KubernetesServerless/CanlYML.png)
+![ejemplo](/capturas/KubernetesServerless/CanalYML.png)
 
 * Una vez definido el canal simplemente iremos a nuestro fichero .yml del serivio y definiremos el mensaje que necesita para lanzarse (es este caso se lanza cada minuto un evento que su mensaje está definido en los llamado **jsonData**).
 
