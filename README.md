@@ -763,3 +763,67 @@ Tambien es importante mencionar que es posible conectar canales entre si si se d
 ![ejemplo](/capturas/KubernetesServerless/ConectarCanales.png)
 
 ***Como nota final sobre la carrera de Kubernetes me pareció una carrera que está bien el disponer de algun conocimiento básico sobre Kubernetes, al inicio es algo dificil entre que tienes que aprender o tener minimamente claro los conceptos básicos para saber que estas haciendo (como programación) y despues el realizar alguna practica para entenderlo y a veces el sistema operativo o los puertos no ayudan mucho a facilitar las cosas, me parecieron buenos cursos, bien explicados y que lo que son los conceptos básicos estan en común con docker y pienso que fue mejor empezar por kubernetes y aprender los conceptos que empezar en docker (porque en algunos ejemplo de docker se emplea Kubernetes).***
+
+## 03/11/2022
+### Inicio y finalización del taller de docker-compose y docker Swarm
+**Docker-Compose:** Es una herramienta que toma como fuente un Fichero .yml y nos permite lanzar varios contenedores simultaneamente entre si, claro
+siempre que se puedan comunicar entre ellas, en el taller se menciona que se usan a veces la version V2, pero actualmente es mentira, puesto que
+ya no dispone de mantenimiento alguno.
+
+Desde que se implementó la version V3 se empezó a utilizar mas los comando de Docker Swarm, pero no quita que dependiendo del tipo de trabajo que realicemos aun podemos ejecutar comando docker-compose.
+
+Primero ejecutaremos el comando "vi docker-compose.yml" que creará un fichero .yml perfecto para practicar, puesto que dispone de un ejemplo sencillo de funcionamiento de docker-compose y usable en docker swarm.
+
+Pero antes de empezar analicemos un concepto que no es tan nuevo, pero es importante tener en cuenta. Cuando nosotros trabajamos con contenedores, más allá de que tengamos algunos empleados para el back y otros para el front, disponemos de lo llamada **roles** que consiste en una manera de administrar permisos, tomando de referecía el ejemplo que nos proporcionan tenemos un nodo que dispone del rol de **manager** mientras que los demás disponen del denominado rol **worker**.
+
+Si nos fijamos bien en la imagen de abajo podemos ver un **depends_on**, lo que significa que para poder ejecutar nuestro servicio denominado WEB deberemos tener lanzado previamente el servicio redis, el cual unicamente tienen acceso a este servicio los que dispongan del rol MANAGER, un WORKER no podria lanzar el servicio de redis.
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/ExampleYML.png)
+
+**Nota: para estas practicas se debe de dispoenr de dos usuarios distintos en mi caso seran uno llamado swarm01 y otro llamado swarm02.**
+
+Empezar es sencillo, tendremos que lanzar el comando **docker swarm init** en mi caso el comando dispone del "--advertise-addr + direcciónIP" porque en la máquina virtual dispongo de multiples direcciones IP y debemos decirle a cual debe ir, pero si solo tenemos una IP disponible la cogera por defecto.
+
+**El comando nos pone a swarm01 como el manager o leader puesto que es quien lanzó el init.**
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/SwarnInit.png)
+
+Para disponer de Workers simplemente tenemos que copiar el comando **docker swarm join --token + el token generado**, pero ojo el token que se crea ES ÚNICO NO PUEDE EXISTIR NINGUN TOKEN DUPLICADO EN CASO DE EXISTIR ES UN ERROR DE SEGURIDAD O INCLUSO DEL PROPIO SISTEMA CLOUD.
+
+**Añadimos swarm02 como worker**
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/Worker.png)
+
+Si hacemos un **docker node ls** podremos ver como disponemos de un nodo Leader que en este caso es el swarm01, nosotros podriamos cambiar los roles con los comando **docker swarm promote/demote + ID del nodo**, solo que es este caso no puedo tener dos lideres ni puedo no tener lider, pero el gestionarlos es muy sencillo.
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/Info.png)
+
+Para lanzar o borrar nuestro servicio tenemos 2 maneras, la antigua que seria con un **docker-compose up -d** para crear y un **docker-compose down** para pararlo y la nueva que usa **docker stack deploy -c +Nombre fichero .yml + nombre del servicio** para crear y **docker stack rm + nombre del servicio** para parar.
+
+* **Docker-compose up** (Si nos fijamos ya nos poner un warning diciendo que empleemos mejor el deploy)
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/Recomendacion.png)
+
+* **docker-compose down** (Si nos fijamos mentí un poco diciendo que lo para, porque parar lo para si, pero tambien ELIMINA LOS NODOS, asi que debemos tener mucho cuidado a la hora de pararlo)
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/Down.png)
+
+* **Ejemplo de docker stack deploy**
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/Deploy.png)
+
+* **Ejemplo de docker stack rm**
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/DockerStackRM.png)
+
+Si nos fijamos el funcionamiento de los comandos es practicamente simular, aunque como el Taller estaba desactualizado creo que el usar los comando up y down ya no es tan recomendable y es mejor usar los de docker stack.
+
+Como prueba final vamos a lanzar nuestro servicio tanto en consola como en el navegador y miremos si es verdad que funciona en paralelo con los dos.
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/Ejemplo1.png)
+
+**Como podemos observar detecta tanto la consola como el navegador y tiene a ambos registrados paralelamente**
+
+![ejemplo](/Docker-y-Kubernetes/capturas/TallerDocker/Ejemplo2.png)
+
+Finalmente en el taller se habla principalmente de la herramienta **Portainer.io** que lo que nos facilita es tener despliegues de aplicaciones en base a Workpress, Microsoft y otros estilo de una manera más gráfica y en vez de tener que teclear lo comando por consola simplemente el ir dandole a botones y descargando las imágenes concretas de cada uno, pero como siempre aunque el despliegue sea más como y atumático siempre es importante saber que está haciendo realmente por si el día de mañana nos toca hacerlo a mano no estar perdidos.
