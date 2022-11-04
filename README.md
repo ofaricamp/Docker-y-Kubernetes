@@ -827,3 +827,21 @@ Como prueba final vamos a lanzar nuestro servicio tanto en consola como en el na
 ![ejemplo](/capturas/TallerDocker/Ejemplo2.png)
 
 Finalmente en el taller se habla principalmente de la herramienta **Portainer.io** que lo que nos facilita es tener despliegues de aplicaciones en base a Workpress, Microsoft y otros estilo de una manera más gráfica y en vez de tener que teclear lo comando por consola simplemente el ir dandole a botones y descargando las imágenes concretas de cada uno, pero como siempre aunque el despliegue sea más como y atumático siempre es importante saber que está haciendo realmente por si el día de mañana nos toca hacerlo a mano no estar perdidos.
+
+## 04/11/2022
+### Inicio y finalización del curso de **Pruebas automatizadas con Docker**
+
+El curso empieza repasando que es Docker, Docker-compose y más cosas que se explicaron anteriormente, pero se habla de la importancia del autotesting que al inicio resulta más costoso que el testing manual, pero a la larga el testing manual sale más caro por la inversión de tiempo que debemos hacer mientras que con la automatizada nos ahorrará mucho más tiempo y es reutilizable para algunos servicios.
+
+Para la realización de la práctica se emplea el siguiente repositorio gitHub que dispone de la automatización y los ficheros .yml https://github.com/AlfredoBazo/opwDocker.
+
+Lo primero a detallar es lo que añadiremos un servicio llamado **Protactor que se encarga de realizar pruebas automatizadas, normalmente corre atraves de un servidor de Angular**, la principal condicion que debemos poner más allá de la imagen es lo que aprendimos cuando se dio Docker-Compose y es con el **depends_on** puesto que para poder realizar pruebas automatizadas de nuestro servicio lo más lógico sería primero lanzarlo y despues realizar el testing.
+
+![ejemplo](/capturas/TallerDocker/Protactor.png)
+
+Ahora si nos fijamos cuando lanzamos nuestro servicio (Como dato importante es un servidor sencillo web de Chrome) podemos ver que en la parte de ejecución de Protactor (que en el fichero .yml está ligado al repositorio gitHub facilitado por el tutor y tiene unas simples sentencias de prueba como busquedas simples, reseteos y etc...) este nos informará conforme está ejecutando las pruebas y al final nos dice cuantos escenarios realizós o pruebas distintas realizadas con los pasos realizados.
+Por ejemplo si decidimos realizar 5 busquedas en un buscador de Google cada busqueda distinta sería un paso y el conjunto de ellas un escenario y si nos fijamos en la imagen el programa tardó 15 segundos aproximadamente en realizar 6 escenarios que en conjunto son un total de 20 pasos.
+
+![ejemplo](/capturas/TallerDocker/Automatizacion.png)
+
+**Nota: en sentido general el curso no aportó un gran avance de materia porque lo que trata docker en si fue visto anteriormente y de la hora que dura el curso aproximadamente 45 minutos son de repaso de lo visto anteriormente.**
