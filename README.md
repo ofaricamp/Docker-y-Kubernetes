@@ -847,7 +847,7 @@ Por ejemplo si decidimos realizar 5 busquedas en un buscador de Google cada busq
 **Nota: en sentido general el curso no aportó un gran avance de materia porque lo que trata docker en si fue visto anteriormente y de la hora que dura el curso aproximadamente 45 minutos son de repaso de lo visto anteriormente.**
 
 
-***Nota final: En general TODA la carrera de Docker que muestran se podría resumir en único curso porque todos los cursos que implementan usan gran parte del tiempo para volver a explicar Docker y tal (que no digo que esté mal, pero como que acaba cansando) y en mi opinión no está bien desarrollada la carrera porque:
+**Nota final: En general TODA la carrera de Docker que muestran se podría resumir en único curso porque todos los cursos que implementan usan gran parte del tiempo para volver a explicar Docker y tal (que no digo que esté mal, pero como que acaba cansando) y en mi opinión no está bien desarrollada la carrera porque:**
 
 - Prácticamente los ejemplos que utilizan son de versiones actualmente inservibles y tuve que hacer alguna que otra trampa para poder realizar bien las prácticas.
 
@@ -855,4 +855,4 @@ Por ejemplo si decidimos realizar 5 busquedas en un buscador de Google cada busq
 
 - Luego ya personalmente pienso que deberían al menos actualizar OpenWebinars lo que es Docker en sí.
 
-Sin embargo el curso de Kubernetes esta muy bien y espero que el de Docker algun día llegue a la altura o al menos pase a estar actualizado.***
+**Sin embargo el curso de Kubernetes esta muy bien y espero que el de Docker algun día llegue a la altura o al menos pase a estar actualizado.**
